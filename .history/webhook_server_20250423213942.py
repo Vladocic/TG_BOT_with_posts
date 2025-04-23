@@ -36,9 +36,7 @@ app.on_shutdown.append(on_shutdown)
 
 app.router.add_post("/webhook", handle_webhook)
 
-@web.get("/")
-async def root(request):
-    return web.Response(text="✅ Сервер Telegram-бота работает!", content_type="text/plain")
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
