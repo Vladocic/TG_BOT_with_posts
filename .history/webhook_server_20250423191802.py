@@ -6,8 +6,6 @@ from app.handlers import register_handlers
 from app.config import WEBHOOK_URL
 from app.commands.commands import set_commands
 from app.bot import bot,dp
-from app.database.init_db import init_models
-
 
 # Регистрируем роутеры
 register_handlers(dp)
