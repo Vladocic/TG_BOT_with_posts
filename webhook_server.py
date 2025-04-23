@@ -12,6 +12,13 @@ from app.bot import bot,dp
 # Регистрируем роутеры
 register_handlers(dp)
 
+routes = web.RouteTableDef()
+
+@routes.get("/")
+async def root(request):
+    return web.Response(text="✅ Сервер Telegram-бота работает!", content_type="text/plain")
+
+
 async def on_startup(app):
     print("🟢 Стартуем сервер...")
     await init_db()
@@ -30,15 +37,13 @@ async def handle_webhook(request):
     await dp.feed_webhook_update(bot=bot, update=update)
     return web.Response()
 
+
 app = web.Application()
 app.on_startup.append(on_startup)
 app.on_shutdown.append(on_shutdown)
+app.add_routes(routes)
 
 app.router.add_post("/webhook", handle_webhook)
-
-@web.get("/")
-async def root(request):
-    return web.Response(text="✅ Сервер Telegram-бота работает!", content_type="text/plain")
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
