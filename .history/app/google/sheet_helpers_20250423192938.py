@@ -5,7 +5,6 @@ from typing import Callable, Any
 import asyncio
 
 
-
 async def run_sync_in_executor(action:Callable, *args:Any):
       """
       Запускает синхронную функцию в отдельном потоке с передачей Google Sheets и аргументов.
