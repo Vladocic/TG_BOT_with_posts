@@ -7,7 +7,7 @@ REQUIRED_VARS = {
     "BOT_TOKEN": None,
     "DATABASE_URL": None,
     "GOOGLE_SHEET_ID": None,
-    # "WEBHOOK_URL": None,
+    "WEBHOOK_URL": None,
 }
 
 for key in REQUIRED_VARS:
