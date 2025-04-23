@@ -1,0 +1,19 @@
+# Google credentials
+credentials.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+.env
+.venv
+venv/
+.env.*
+
+# VSCode
+.vscode/
+
+# Docker
+*.log

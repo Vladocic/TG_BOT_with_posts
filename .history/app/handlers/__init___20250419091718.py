@@ -1,0 +1,10 @@
+from aiogram import Dispatcher
+from aiogram.filters import CommandStart
+from app.handlers.start import start
+from app.handlers.get_all_posts import handle_get_all_posts
+
+
+
+def register_handlers(dp: Dispatcher):
+    dp.message.register(start, CommandStart)
+    dp.q.register(start, CommandStart)

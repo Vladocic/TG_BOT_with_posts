@@ -1,0 +1,30 @@
+# docker-compose.yml
+
+services:
+  db:
+    container_name: my_bot_db
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: my_bot
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    container_name: telegram_bot_app
+    build: .
+    command: ["python", "-m", "app.database.init_db"]
+    volumes:
+      - .:/code
+    working_dir: /code
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/my_bot
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:

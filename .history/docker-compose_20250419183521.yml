@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: my_bot_db              # 👈 чтобы имя контейнера было предсказуемым
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres              # 👈 создаёт пользователя
+      POSTGRES_PASSWORD: postgres          # 👈 с паролем
+      POSTGRES_DB: my_bot                  # 👈 и базу my_bot!
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

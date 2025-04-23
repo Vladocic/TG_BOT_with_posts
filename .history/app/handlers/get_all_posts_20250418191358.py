@@ -1,0 +1,5 @@
+from aiogram.types import CallbackQuery
+
+
+async def handle_get_all_posts(callback:CallbackQuery):
+    callback.data = 
