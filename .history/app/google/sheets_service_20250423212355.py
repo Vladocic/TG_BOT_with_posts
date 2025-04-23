@@ -13,13 +13,17 @@ def get_sheet():
     if not credentials_raw:
         raise ValueError("Переменная GOOGLE_CREDENTIALS не задана")
     
-    # Преобразуем строку в словарь, заменив \\n на \n
-    credentials_info = json.loads(credentials_raw.replace("\\n", "\n"))
-
     creds = service_account.Credentials.from_service_account_file(
     "/etc/secrets/google_credentials.json",
     scopes=["https://www.googleapis.com/auth/spreadsheets"]
 )
-    
+
+    # Преобразуем строку в словарь, заменив \\n на \n
+    credentials_info = json.loads(credentials_raw.replace("\\n", "\n"))
+
+    creds = service_account.Credentials.from_service_account_info(
+        credentials_info,
+        scopes=["https://www.googleapis.com/auth/spreadsheets"]
+    )
     client = gspread.authorize(creds)
     return client.open_by_key(GOOGLE_SHEET_ID).sheet1
