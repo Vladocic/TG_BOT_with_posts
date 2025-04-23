@@ -1,9 +1,9 @@
 # Базовый образ Python
-FROM python:3.11-slim
+FROM python:3.11	•	Environment: Python
 
 
 # Установка рабочей директории внутри контейнера
-WORKDIR /app
+WORKDIR /code
 
 # Скопировать файл зависимостей
 COPY requirements.txt .
@@ -13,9 +13,3 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Скопировать весь проект внутрь контейнера
 COPY . .
-
-# Открываем порт (если требуется, можно опустить)
-EXPOSE 8000
-
-# Команда запуска
-CMD [ "python", "webhook_server.py"]
